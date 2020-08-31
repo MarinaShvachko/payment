@@ -26,6 +26,7 @@ public class User {
     public String getCurrency() {
         return account.getCurrency();
     }
+
     public int getClientNumber() {
         return account.getClientNumber();
     }
@@ -33,5 +34,4 @@ public class User {
     public int getBankAccountNumber() {
         return account.getBankAccountNumber();
     }
-
 }

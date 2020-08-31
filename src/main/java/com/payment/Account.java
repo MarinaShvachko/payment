@@ -1,5 +1,7 @@
 package com.payment;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.math.BigDecimal;
 
 public class Account {
@@ -8,9 +10,10 @@ public class Account {
     private BigDecimal accountBalance;
     private String currency;
 
+    // TODO: 31.08.2020 добавить автоматическую уникальную нумерацию при создании счета клиента 
     public int getClientNumber() {
         return clientNumber;
-    }
+    } 
 
     public void setClientNumber(int clientNumber) {
         this.clientNumber = clientNumber;
