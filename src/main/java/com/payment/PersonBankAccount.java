@@ -4,7 +4,7 @@ import com.sun.xml.internal.bind.v2.TODO;
 
 import java.math.BigDecimal;
 
-public class Account {
+public class PersonBankAccount {
     private int clientNumber;
     private int bankAccountNumber;
     private BigDecimal accountBalance;
