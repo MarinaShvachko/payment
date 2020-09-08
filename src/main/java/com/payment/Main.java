@@ -14,7 +14,7 @@ public class Main {
         App app = new App();
 
         //получила номер телефона, по которому отправлю деньги и сумму
-        ArrayList<Integer> c = app.ReceivePhoneNumber();
+        ArrayList<String> c = app.ReceivePhoneNumber();
         System.out.println(c.get(0));
         System.out.println(c.get(1));
     }
