@@ -1,4 +1,4 @@
-package com.payment;
+package com.payment.user;
 
 import java.math.BigDecimal;
 
