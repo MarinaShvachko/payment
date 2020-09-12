@@ -1,11 +1,16 @@
 package com.payment.server;
 
-public class Server {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+public class Server {
     //принимает оплату от приложения
-    // TODO: 12.09.2020   добавить проверку на получаемые данне
+    // TODO: 12.09.2020   добавить проверку на получаемые данные
     private String hostAddress;
-    private int ip;
     private int port;
     private String protocol;
 }

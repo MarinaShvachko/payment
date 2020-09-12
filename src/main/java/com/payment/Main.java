@@ -16,10 +16,10 @@ public class Main {
         //создала приложение отправителя, как его привязать к отправителю?
         MobileApp app = new MobileApp();
 
-        //получила номер телефона, по которому отправлю деньги и сумму
-        ArrayList<String> c = app.ReceivePhoneNumberAndMoneyFromConsole();
-//        System.out.println(c.get(0));
-//        System.out.println(c.get(1));
-        app.payUsingPnonenumber(vasia, c);
+        //получила с консоли номер телефона, по которому отправлю деньги и сумму
+        ArrayList<String> pnoneAndAmount = app.ReceivePhoneNumberAndMoneyFromConsole();
+
+        //отправляю информацию для оплаты на сервер
+        app.payUsingPnonenumber(vasia, pnoneAndAmount);
     }
 }

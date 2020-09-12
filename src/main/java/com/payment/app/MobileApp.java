@@ -2,6 +2,7 @@ package com.payment.app;
 
 import com.payment.Pay;
 import com.payment.ReceiveDataForPayment;
+import com.payment.server.Server;
 import com.payment.user.User;
 import com.payment.validation.PhoneValidation;
 
@@ -14,8 +15,7 @@ import java.util.ArrayList;
 //более гибко делать интерфейс, а для каждого типа приложения создавать класс, пример - телефонное приложение, десктопное приложение и т.п.
 
 public class MobileApp implements Pay, ReceiveDataForPayment {
-        private BigDecimal paymentAmount;
-
+        //private BigDecimal paymentAmount;
 
         //узнать номер телефона и сумму, которую отправим по номеру телефона
         public ArrayList<String> ReceivePhoneNumberAndMoneyFromConsole() {
@@ -24,7 +24,6 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
                 String amountToPay = "";
                 ArrayList<String> phoneAndAmount = new ArrayList<String>();
                 System.out.println("Введите номер телефона в формате 89121115533");
-
 
                         try {
                                 phoneNumber = reader.readLine();
@@ -45,9 +44,10 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
                 }
 
         //оплатить: с какого счета, кому(на какой номер), сколько
-        public void payUsingPnonenumber(User user, ArrayList<String> test) { //получает данные и передает их на сервер
+        public void payUsingPnonenumber(User user, ArrayList<String> pnoneAndAmount) { //получает данные и передает их на сервер
+                Server server = new Server("199.188.0.9.", 8080, "TCP");
                 System.out.println(user.getBankAccountNumber());
-                System.out.println(test.get(0));
-                System.out.println(test.get(1));
+                System.out.println(pnoneAndAmount.get(0));
+                System.out.println(pnoneAndAmount.get(1));
         }
 }

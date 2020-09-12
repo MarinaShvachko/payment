@@ -1,6 +1,9 @@
 package com.payment.user;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
+
 
 public class User {
     private String phoneNumber;
