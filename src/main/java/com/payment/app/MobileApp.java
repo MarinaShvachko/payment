@@ -2,8 +2,10 @@ package com.payment.app;
 
 import com.payment.Pay;
 import com.payment.ReceiveDataForPayment;
+import com.payment.exception.PaymentValidationExeption;
 import com.payment.server.Server;
 import com.payment.user.User;
+import com.payment.validation.AmountValidation;
 import com.payment.validation.PhoneValidation;
 
 import java.io.BufferedReader;
@@ -44,10 +46,27 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
                 }
 
         //оплатить: с какого счета, кому(на какой номер), сколько
-        public void payUsingPnonenumber(User user, ArrayList<String> pnoneAndAmount) { //получает данные и передает их на сервер
-                Server server = new Server("199.188.0.9.", 8080, "TCP");
-                System.out.println(user.getBankAccountNumber());
-                System.out.println(pnoneAndAmount.get(0));
-                System.out.println(pnoneAndAmount.get(1));
+        public ArrayList<String> payUsingPnonenumber(User user, ArrayList<String> pnoneAndAmount) {
+                //имеющиеся деньги на счете
+                BigDecimal currentAmountOfMoney = user.getAccountBalance();
+                //сумма для списания со счета
+                BigDecimal amountOfManeyToPay = new BigDecimal(pnoneAndAmount.get(1));
+
+                //проверка хватит ли денег для оплаты
+                AmountValidation amountValidation = new AmountValidation();
+                if (amountValidation.isPaymantPossible(currentAmountOfMoney, amountOfManeyToPay) == true) {
+                        //System.out.println("Оплата отправлена");
+
+                } else {
+                        throw new PaymentValidationExeption("Недостаточно денег на счете");
+                }
+                return pnoneAndAmount;
+
+                // TODO: 12.09.2020 если денег хватило - добавить вычитание на счете
+                //Server server = new Server("199.188.0.9.", 8080, "TCP");
+//                System.out.println(user.getBankAccountNumber());
+//                System.out.println(pnoneAndAmount.get(0));
+//                System.out.println(pnoneAndAmount.get(1));
         }
+
 }
