@@ -1,18 +1,21 @@
-package com.payment;
+package com.payment.user;
+
+import lombok.Getter;
 
 import java.math.BigDecimal;
+
 
 public class User {
     private String phoneNumber;
     private String name;
     private String familyname;
-    private Account account;
+    private PersonBankAccount account;
 
     public User(String phoneNumber, String name, String familyname, int accountBalance, int clientNumber, int bankAccountNumber) {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.familyname = familyname;
-        this.account = new Account();
+        this.account = new PersonBankAccount();
         account.setAccountBalance(BigDecimal.valueOf(accountBalance));
         account.setCurrency("Ru");
         account.setClientNumber(clientNumber);
