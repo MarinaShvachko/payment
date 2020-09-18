@@ -3,6 +3,7 @@ package com.payment;
 import com.payment.app.MobileApp;
 import com.payment.bankAccount.PersonBankAccount;
 import com.payment.common.Currency;
+import com.payment.payment.Payment;
 import com.payment.server.Server;
 import com.payment.user.User;
 
@@ -22,7 +23,7 @@ public class Main {
         MobileApp app = new MobileApp();
 
         //получила с консоли номер телефона, по которому отправлю деньги и сумму
-        ArrayList<String> pnoneAndAmount = app.ReceivePhoneNumberAndMoneyFromConsole();
+        Payment pnoneAndAmount = app.ReceivePhoneNumberAndMoneyFromConsole();
 
         //отправляю информацию для оплаты на сервер
         app.payUsingPnonenumber(vasia, pnoneAndAmount, personBankAccount.getCurrency());

@@ -1,8 +1,10 @@
 package com.payment.common;
 
+import com.payment.payment.Payment;
 import com.payment.validation.PhoneValidation;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,11 +12,12 @@ public interface ReceiveDataForPayment {
     //получить с консоли номер телефона на который деньги переводить
     //далее могут быть методы получить данные из файла, из базы данных и т.п.
 
-    default ArrayList<String> ReceivePhoneNumberAndMoneyFromConsole() {
+    default Payment ReceivePhoneNumberAndMoneyFromConsole() {
         Scanner scaner = new Scanner(System.in);
         String phoneNumber = "";
-        String amountToPay = "";
-        ArrayList<String> phoneAndAmount = new ArrayList<>();
+        String amountToPay="";
+        //ArrayList<String> phoneAndAmount = new ArrayList<>();
+        Payment payment = new Payment();
         System.out.println("Введите номер телефона в формате 89121115533");
 
             try {
@@ -32,9 +35,12 @@ public interface ReceiveDataForPayment {
                 System.out.println(e);
             }
 
-            phoneAndAmount.add(phoneNumber);
-            phoneAndAmount.add(amountToPay);
-            return phoneAndAmount;
+            //phoneAndAmount.add(phoneNumber);
+            //phoneAndAmount.add(amountToPay);
+            payment.setPhoneNumber(phoneNumber);
+            payment.setAmountToPay(amountToPay);
+
+            return payment;
         }
 }
 
