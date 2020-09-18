@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
 
 @Getter
@@ -20,11 +21,21 @@ public class Server {
 
     //Добавить на стороне сервера коллекцию для хранения деталей пользователя
     public void listOfPhonesAndAmountsToPAy (ArrayList<String> pnoneAndAmount) {
-        HashMap<String, String> phoneAndHowMuch = new HashMap<>();
-        phoneAndHowMuch.put(pnoneAndAmount.get(0), pnoneAndAmount.get(1));
+//        HashMap<String, String> phoneAndHowMuch = new HashMap<>();
+//        phoneAndHowMuch.put(pnoneAndAmount.get(0), pnoneAndAmount.get(1));
+//
+//        for (HashMap.Entry x : phoneAndHowMuch.entrySet()) {
+//            System.out.println(x.getKey() + " " + x.getValue());
+//        }
 
-        for (HashMap.Entry x : phoneAndHowMuch.entrySet()) {
-            System.out.println(x.getKey() + " " + x.getValue());
+
+        ArrayList<String> x = new ArrayList<>();
+        x.add(pnoneAndAmount.get(0));
+        x.add(pnoneAndAmount.get(1));
+        x.add(pnoneAndAmount.get(2));
+
+        for (String s : x) {
+            System.out.println(s);
         }
 
         //return phonesAndAmountToPayNow;
