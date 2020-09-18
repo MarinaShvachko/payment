@@ -35,8 +35,6 @@ public interface ReceiveDataForPayment {
                 System.out.println(e);
             }
 
-            //phoneAndAmount.add(phoneNumber);
-            //phoneAndAmount.add(amountToPay);
             payment.setPhoneNumber(phoneNumber);
             payment.setAmountToPay(amountToPay);
 

@@ -17,27 +17,23 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
         String currency="";
         User user;
 
-        //оплатить: с какого счета, кому(на какой номер), сколько
+        //оплатить: кто платит, кому(на какой номер), сколько, валюта
         @Override
-        public Payment payUsingPnonenumber(User user, Payment pnoneAndAmount, Currency currency) {
+        public Payment payUsingPnonenumber(User user, Payment paymentDetailes, Currency currency) {
                 this.currency = currency.getCurrency();
                 this.user = user;
-                //имеющиеся деньги на счете
-                BigDecimal currentAmountOfMoney = user.getAccountBalance();
-                //сумма для списания со счета
-                BigDecimal amountOfManeyToPay = new BigDecimal(pnoneAndAmount.getAmountToPay() );
-                //проверка хватит ли денег для оплаты
-                AmountValidation amountValidation = new AmountValidation();
-                if (amountValidation.isPaymantPossible(currentAmountOfMoney, amountOfManeyToPay)) {
-                        //уменьшила сумму на счете
-                        user.setAccountBalance(currentAmountOfMoney.subtract(amountOfManeyToPay));
-                        //pnoneAndAmount.setBankAccountNumber(user.getBankAccountNumber());
-                        pnoneAndAmount.setUser(user);
-                        pnoneAndAmount.setCurrency(currency);
-                        System.out.println("Баланс обновлен и =  " + user.getAccountBalance());/////////////////////////////////////////////
+                paymentDetailes.setUser(user);
+                paymentDetailes.setCurrency(currency);
+                return paymentDetailes;
+        }
+
+        //если ответ от сервера положительный - выводим на ui оповещение
+
+        public void renewStatusOfPayment(Boolean b) {
+                if (b) {
+                        System.out.println("Платеж успешный");
                 } else {
-                        throw new PaymentValidationExeption("Недостаточно денег на счете");
+                        System.out.println("Платеж не прошел, на счете недостаточно средств");
                 }
-                return pnoneAndAmount;
         }
 }

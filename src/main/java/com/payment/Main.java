@@ -14,7 +14,6 @@ public class Main {
     public static void main(String[] args) {
         //создала счет
         PersonBankAccount personBankAccount = new PersonBankAccount(123456789, new BigDecimal(87L), Currency.RUB);
-        //System.out.println(personBankAccount.getCurrency());
 
         //создала отправителя и передала счет
         User vasia = new User("89124445566", "Вася", "Пупкин", personBankAccount);
@@ -22,15 +21,17 @@ public class Main {
         //создала приложение
         MobileApp app = new MobileApp();
 
-        //получила с консоли номер телефона, по которому отправлю деньги и сумму
+        //создала сервер
+        Server server = new Server("199.188.89.89", 8800, "TCP");
+
+        //получила с консоли номер телефона, по которому отправлю деньги и сумму, сохранила в объект
         Payment pnoneAndAmount = app.ReceivePhoneNumberAndMoneyFromConsole();
 
-        //отправляю информацию для оплаты на сервер
+        //отправляю обьект с информацией для оплаты на сервер
         app.payUsingPnonenumber(vasia, pnoneAndAmount, personBankAccount.getCurrency());
 
-        Server server = new Server("199.188.89.89", 8800, "TCP");
-        //сохраняю на сервере номер телефона и сумму для перевода
-        server.listOfPhonesAndAmountsToPAy(pnoneAndAmount);
-
+        //передаю данные платежа на сервер, там платеж обрабатывается и возвращается статус,
+        //в зависимости от статуса выводится сообщение для пользователя
+        app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPAy(pnoneAndAmount));
     }
 }
