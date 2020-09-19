@@ -8,6 +8,7 @@ import com.payment.payment.Payment;
 import com.payment.user.User;
 import com.payment.validation.AmountValidation;
 
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -19,21 +20,22 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
 
         //оплатить: кто платит, кому(на какой номер), сколько, валюта
         @Override
-        public Payment payUsingPnonenumber(User user, Payment paymentDetailes, Currency currency) {
-                this.currency = currency.getCurrency();
-                this.user = user;
-                paymentDetailes.setUser(user);
-                paymentDetailes.setCurrency(currency);
-                return paymentDetailes;
+        public ArrayList<Payment> payUsingPnonenumber (User user, ArrayList<Payment> paymentDetailes, Currency currency) {
+                ArrayList<Payment> p = paymentDetailes;
+                for (int x = 0; x < paymentDetailes.size(); x++) {
+                        this.currency = currency.getCurrency();
+                        this.user = user;
+                        paymentDetailes.get(x).setUser(user);
+                        paymentDetailes.get(x).setCurrency(currency);
+                }
+                return p; //обьект точно передается.
         }
 
         //если ответ от сервера положительный - выводим на ui оповещение
-
-        public void renewStatusOfPayment(Boolean b) {
-                if (b) {
-                        System.out.println("Платеж успешный");
-                } else {
-                        System.out.println("Платеж не прошел, на счете недостаточно средств");
+        public void renewStatusOfPayment(ArrayList<Payment> p) {
+//                ArrayList<Payment> status = p;
+                for (int x = 0; x < p.size(); x ++) {
+                        System.out.println(p.get(x).getStatus().equals("Успех") ? "Платеж на сумму " +  p.get(x).getAmountToPay() + " " + p.get(x).getStatus() :"Платеж на сумму " +  p.get(x).getAmountToPay() + " " + p.get(x).getStatus());
                 }
         }
 }
