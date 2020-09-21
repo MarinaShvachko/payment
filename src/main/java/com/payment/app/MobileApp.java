@@ -28,12 +28,7 @@ public class MobileApp implements Pay, ReceiveDataForPayment {
         }
 
         //если ответ от сервера положительный - выводим на ui оповещение
-
         public void renewStatusOfPayment(Boolean b) {
-                if (b) {
-                        System.out.println("Платеж успешный");
-                } else {
-                        System.out.println("Платеж не прошел, на счете недостаточно средств");
-                }
+                System.out.println(b? "Платеж успешный" : "Платеж не прошел, на счете недостаточно средств");
         }
 }
