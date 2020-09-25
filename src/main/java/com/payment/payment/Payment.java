@@ -5,14 +5,11 @@ import com.payment.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Setter
 @Getter
 public class Payment {
     //от кого
     private User user;
-    //private int bankAccountNumber;
     //кому
     private String phoneNumber;
     //сколько

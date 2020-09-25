@@ -3,7 +3,9 @@ package com.payment;
 import com.payment.app.MobileApp;
 import com.payment.bankAccount.PersonBankAccount;
 import com.payment.common.Currency;
+import com.payment.common.ReceiveDataForPayment;
 import com.payment.payment.Payment;
+import com.payment.server.Database;
 import com.payment.server.Server;
 import com.payment.user.User;
 
@@ -12,26 +14,29 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        //создала счет
+
         PersonBankAccount personBankAccount = new PersonBankAccount(123456789, new BigDecimal(87L), Currency.RUB);
 
-        //создала отправителя и передала счет
         User vasia = new User("89124445566", "Вася", "Пупкин", personBankAccount);
 
-        //создала приложение
         MobileApp app = new MobileApp();
 
-        //создала сервер
         Server server = new Server("199.188.89.89", 8800, "TCP");
 
-        //получила с консоли номер телефона, по которому отправлю деньги и сумму, сохранила в объект
-        Payment pnoneAndAmount = app.ReceivePhoneNumberAndMoneyFromConsole();
+        //получить с консоли номер телефона, по которому отправить деньги и сумму, сохранить в объект
+        Payment pnoneAndAmount = ReceiveDataForPayment.ReceivePhoneNumberAndMoneyFromConsole();
+
+        //реализация домашнего задания Добавить на стороне приложения проверку на дублирующий запрос, урок 12
+        Database database = new Database();
+        //database.putInDatabaseTest( 918, "89126558937"); //только для теста!!
+        app.checkOnDatabase(database, pnoneAndAmount);
 
         //отправляю обьект с информацией для оплаты на сервер
-        app.payUsingPnonenumber(vasia, pnoneAndAmount, personBankAccount.getCurrency());
+        app.payUsingPhoneNumber(vasia, pnoneAndAmount, personBankAccount.getCurrency());
 
-        //передаю данные платежа на сервер, там платеж обрабатывается и возвращается статус,
+        //На сервере платеж обрабатывается и возвращает статус,
         //в зависимости от статуса выводится сообщение для пользователя
-        app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPAy(pnoneAndAmount));
+        app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPay(pnoneAndAmount));
+       // database.showInDatabase();
     }
 }
