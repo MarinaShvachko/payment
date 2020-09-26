@@ -28,14 +28,4 @@ public class MobileApp implements Pay {
         public void renewStatusOfPayment(Boolean b) {
                 System.out.println(b? "Платеж успешный" : "Платеж не прошел, на счете недостаточно средств");
         }
-
-        //сделала проверку на дублирующие значения на стороне приложения только для реализации домашнего задания урок 12
-        //добавить на стороне приложения проверку на дублирующий запрос
-        public void checkOnDatabase(Database d, Payment p) {
-               for (Object x : d.getDatabase().entrySet()) {
-                       if (d.getDatabase().containsValue(p.getPhoneNumber())) {
-                               throw new PaymentValidationExeption("Дублирующий запрос!");
-                       }
-               }
-        }
 }

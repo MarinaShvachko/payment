@@ -24,17 +24,23 @@ public class Server {
         BigDecimal amountOfMoneyToPay = new BigDecimal(paymentDetails.getAmountToPay() );
         AmountValidation amountValidation = new AmountValidation();
 
+        //домашнее задание хранение деталей пользователя \ платежа
+        Database<Integer, String> database = new Database<>();
+//        database.putInDatabase(1, "89123334455"); //Только для теста на дублирующие значения
+//        database.putInDatabase(2, "00000000000");//Только для теста на дублирующие значения
+
+        //домашнее задание - проверка на дублирующий запрос
+        database.checkOnDatabase(database, paymentDetails);
+
+        //если все проверки прошли:
         if (amountValidation.isPaymentPossible(currentAmountOfMoney, amountOfMoneyToPay)) {
             //уменьшить сумму на счете
             paymentDetails.getUser().setAccountBalance(currentAmountOfMoney.subtract(amountOfMoneyToPay));
-            //установить статус
+            //установить статус платежа
             paymentDetails.setStatus("Платеж прошел");
 
-            //Данные с успешными платежами будут храниться в базе данных
-            //Database<Integer, String> d = new Database();
-            Database database = new Database<Integer, String>();
             database.putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
-            database.showInDatabase(); //только для теста
+            //database.showInDatabase(); //только для теста
              return true;
         } else {
             return false;

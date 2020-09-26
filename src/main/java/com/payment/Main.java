@@ -26,18 +26,11 @@ public class Main {
         //получить с консоли номер телефона, по которому отправить деньги и сумму, сохранить в объект
         Payment pnoneAndAmount = ReceiveDataForPayment.ReceivePhoneNumberAndMoneyFromConsole();
 
-        //реализация домашнего задания Добавить на стороне приложения проверку на дублирующий запрос, урок 12
-        Database database = new Database();
-        //только для теста на дублирующий запрос
-        //database.putInDatabase ( 918, "89126555555");
-        app.checkOnDatabase(database, pnoneAndAmount);
-
         //отправляю обьект с информацией для оплаты на сервер
         app.payUsingPhoneNumber(vasia, pnoneAndAmount, personBankAccount.getCurrency());
 
         //На сервере платеж обрабатывается и возвращает статус,
         //в зависимости от статуса выводится сообщение для пользователя
         app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPay(pnoneAndAmount));
-        //database.showInDatabase();
     }
 }

@@ -19,7 +19,7 @@ public interface ReceiveDataForPayment {
 
              try {
                 phoneNumber = scaner.nextLine();
-                PhoneValidation<Boolean> validate = new PhoneValidation<Boolean>(); //сюда передать параметр
+                PhoneValidation validate = new PhoneValidation(); //сюда передать параметр
                 while (!validate.validatePhoneLengthAndSimbols(phoneNumber)) {
                     System.out.println("Введенный номер не соответствует шаблону 89121115533");
                     phoneNumber = scaner.nextLine();
