@@ -17,6 +17,7 @@ public class Server {
     private String hostAddress;
     private int port;
     private String protocol;
+    private Database database;
 
     public boolean listOfPhonesAndAmountsToPay (Payment paymentDetails) {
         //проверка хватит ли денег, если нет - вернет ошибку - ее ловит приложение и отвечает
@@ -31,8 +32,8 @@ public class Server {
             paymentDetails.setStatus("Платеж прошел");
 
             //Данные с успешными платежами будут храниться в базе данных
-            Database d = new Database();
-            d.putInDatabase(paymentDetails);
+            Database<Integer, String> d = new Database();
+            d.putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
             //d.showInDatabase(); //только для теста
              return true;
         } else {
