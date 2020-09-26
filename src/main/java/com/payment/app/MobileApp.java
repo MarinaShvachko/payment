@@ -32,8 +32,8 @@ public class MobileApp implements Pay {
         //сделала проверку на дублирующие значения на стороне приложения только для реализации домашнего задания урок 12
         //добавить на стороне приложения проверку на дублирующий запрос
         public void checkOnDatabase(Database d, Payment p) {
-               for (Map.Entry x : d.getDatabase().entrySet()) {
-                       if (d.getDatabase().containsKey(p.hashCode())) {
+               for (Object x : d.getDatabase().entrySet()) {
+                       if (d.getDatabase().containsValue(p.getPhoneNumber())) {
                                throw new PaymentValidationExeption("Дублирующий запрос!");
                        }
                }

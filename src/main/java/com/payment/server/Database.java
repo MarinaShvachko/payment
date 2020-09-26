@@ -3,17 +3,18 @@ package com.payment.server;
 import com.payment.payment.Payment;
 import java.util.*;
 
-public class Database {
+public class Database<T1, T2> {
+    T1 object1;
+    T2 object2;
 
-    Map<Integer, String> database = new TreeMap<>();
+    Map<T1, T2> database = new TreeMap<>();
 
-    public Map<Integer, String> getDatabase() {
+    public Map<T1, T2> getDatabase() {
         return database;
     }
 
-    //для удобства тестирования складываю телефон, вообще будет складываться обьект
-    public void putInDatabase(Payment p) {
-        database.put (p.hashCode(), p.getPhoneNumber());
+    public void putInDatabase(T1 object1, T2 object2 ) {
+        database.put (object1, object2);
     }
 
     //для теста на повторяющиеся значения

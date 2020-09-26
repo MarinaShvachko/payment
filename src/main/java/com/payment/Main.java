@@ -28,7 +28,8 @@ public class Main {
 
         //реализация домашнего задания Добавить на стороне приложения проверку на дублирующий запрос, урок 12
         Database database = new Database();
-        //database.putInDatabaseTest( 918, "89126558937"); //только для теста!!
+        //только для теста на дублирующий запрос
+        //database.putInDatabase ( 918, "89126555555");
         app.checkOnDatabase(database, pnoneAndAmount);
 
         //отправляю обьект с информацией для оплаты на сервер
@@ -37,6 +38,6 @@ public class Main {
         //На сервере платеж обрабатывается и возвращает статус,
         //в зависимости от статуса выводится сообщение для пользователя
         app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPay(pnoneAndAmount));
-       // database.showInDatabase();
+        //database.showInDatabase();
     }
 }
