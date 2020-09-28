@@ -1,14 +1,11 @@
 package com.payment.server;
 
-import com.payment.exception.PaymentValidationExeption;
 import com.payment.payment.Payment;
 import com.payment.validation.AmountValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
-import java.util.*;
 
 @Getter
 @Setter
@@ -26,8 +23,7 @@ public class Server {
 
         //домашнее задание хранение деталей пользователя \ платежа
         Database<Integer, String> database = new Database<>();
-//        database.putInDatabase(1, "89123334455"); //Только для теста на дублирующие значения
-//        database.putInDatabase(2, "00000000000");//Только для теста на дублирующие значения
+        //database.putInDatabase(1, "89123334455"); //Только для теста на дублирующие значения
 
         //домашнее задание - проверка на дублирующий запрос
         database.checkOnDatabase(database, paymentDetails);
@@ -38,9 +34,11 @@ public class Server {
             paymentDetails.getUser().setAccountBalance(currentAmountOfMoney.subtract(amountOfMoneyToPay));
             //установить статус платежа
             paymentDetails.setStatus("Платеж прошел");
-
+            //записать в базу данных
             database.putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
-            //database.showInDatabase(); //только для теста
+            //только для теста
+            //database.showInDatabase();
+            //System.out.println(" пользователь " + paymentDetails.getUser().getName() + " заплатил на номер телефона " + paymentDetails.getPhoneNumber() + " сумму " + paymentDetails.getAmountToPay() + " валюта = " + paymentDetails.getCurrency());
              return true;
         } else {
             return false;

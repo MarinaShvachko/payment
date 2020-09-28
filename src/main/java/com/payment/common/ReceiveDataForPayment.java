@@ -2,7 +2,6 @@ package com.payment.common;
 
 import com.payment.payment.Payment;
 import com.payment.validation.PhoneValidation;
-
 import java.io.IOException;
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package com.payment.user;
 
+
 import com.payment.bankAccount.PersonBankAccount;
-import com.payment.common.Currency;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +15,6 @@ public class User {
     private String familyname;
     private PersonBankAccount personBankAccount;
     private BigDecimal accountBalance;
-    private int bankAccountNumber;
 
     public User(String phoneNumber, String name, String familyname, PersonBankAccount personBankAccount) {
         this.phoneNumber = phoneNumber;
@@ -23,6 +22,5 @@ public class User {
         this.familyname = familyname;
         this.personBankAccount = personBankAccount;
         this.accountBalance = personBankAccount.getAccountBalance();
-        this.bankAccountNumber = personBankAccount.getBankAccountNumber();
     }
 }

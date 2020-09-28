@@ -2,11 +2,8 @@ package com.payment.bankAccount;
 
 import com.payment.common.Currency;
 import lombok.Getter;
-import lombok.Setter;
-
 import java.math.BigDecimal;
 
-@Setter
 @Getter
 public class PersonBankAccount {
     private int bankAccountNumber;

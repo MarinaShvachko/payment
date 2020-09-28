@@ -2,13 +2,8 @@ package com.payment.app;
 
 import com.payment.common.Currency;
 import com.payment.common.Pay;
-import com.payment.common.ReceiveDataForPayment;
-import com.payment.exception.PaymentValidationExeption;
-import com.payment.exception.ServerValidationExeption;
 import com.payment.payment.Payment;
-import com.payment.server.Database;
 import com.payment.user.User;
-import java.util.Map;
 
 public class MobileApp implements Pay {
         String currency="";
