@@ -11,7 +11,7 @@ public class HomePhone extends Phone {
         if (phone.length() == 7) {
             homePhone = phone;
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Шаблон домашнего номера телефона не прошел проверку");
         }
     }
 }

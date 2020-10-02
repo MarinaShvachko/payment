@@ -4,7 +4,6 @@ import com.payment.exception.ServerValidationExeption;
 import com.payment.payment.Payment;
 import java.util.*;
 
-//сделала этот класс дженериком т.к. не поняла сначала дом. задание
 public class Database<T1, T2> {
     T1 object1;
     T2 object2;

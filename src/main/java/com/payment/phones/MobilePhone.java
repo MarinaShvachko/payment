@@ -10,7 +10,7 @@ public class MobilePhone extends Phone{
         if (phone.length() == 11) {
             mobilePhone = phone;
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Шаблон мобильного номера не прошел проверку");
         }
     }
 }

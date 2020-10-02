@@ -16,28 +16,18 @@ public class Server {
     private String protocol;
 
     public boolean listOfPhonesAndAmountsToPay (Payment paymentDetails) {
-        //проверка хватит ли денег, если нет - вернет ошибку - ее ловит приложение и отвечает
+        //проверка хватит ли денег, если нет - вернет ошибку - ее ловит приложение и выводит на UI
         BigDecimal currentAmountOfMoney = paymentDetails.getUser().getAccountBalance();
         BigDecimal amountOfMoneyToPay = new BigDecimal(paymentDetails.getAmountToPay() );
         AmountValidation amountValidation = new AmountValidation();
 
-        //домашнее задание хранение деталей пользователя \ платежа
-        Database<Integer, String> database = new Database<>();
-        //database.putInDatabase(1, "89123334455"); //Только для теста на дублирующие значения
-
-        //домашнее задание - проверка на дублирующий запрос
-        database.checkOnDatabase(database, paymentDetails);
-
-        //если все проверки прошли:
         if (amountValidation.isPaymentPossible(currentAmountOfMoney, amountOfMoneyToPay)) {
             //уменьшить сумму на счете
             paymentDetails.getUser().setAccountBalance(currentAmountOfMoney.subtract(amountOfMoneyToPay));
             //установить статус платежа
             paymentDetails.setStatus("Платеж прошел");
             //записать в базу данных
-            database.putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
-            //только для теста
-            //database.showInDatabase();
+            paymentDetails.getDatabase().putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
             //System.out.println(" пользователь " + paymentDetails.getUser().getName() + " заплатил на номер телефона " + paymentDetails.getPhoneNumber() + " сумму " + paymentDetails.getAmountToPay() + " валюта = " + paymentDetails.getCurrency());
              return true;
         } else {
