@@ -17,8 +17,7 @@ public class UserPhoneValidation<T> {
         return "" + phone + "";
     }
 
-    public void validateUserPhoneNumber(Phone phone, Predicate<Phone> predicate) {
-        boolean result = predicate.test(phone);
-        //System.out.println(result);
+    public boolean validateUserPhoneNumber(Phone phone, Predicate<Phone> predicate) {
+        return predicate.test(phone);
     }
 }

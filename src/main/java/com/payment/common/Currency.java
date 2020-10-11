@@ -1,19 +1,19 @@
 package com.payment.common;
 
 public enum Currency {
-    RUB("643"),
-    USD("840"),
-    EUR("978");
+    RUB(643),
+    USD(840),
+    EUR(978);
 
-    private String currency;
+    private int currency;
 
-    Currency(String currency) {
+    Currency(int currency) {
         this.currency = currency;
     }
 
     Currency() {}
 
-    public String getCurrency() {
+    public int getCurrency() {
         return currency;
     }
 }
