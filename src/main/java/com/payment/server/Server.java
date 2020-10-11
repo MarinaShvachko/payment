@@ -1,32 +1,37 @@
 package com.payment.server;
 
+import com.payment.payment.Payment;
+import com.payment.validation.AmountValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class Server {
-    //принимает оплату от приложения
-    // TODO: 12.09.2020   добавить проверку на получаемые данные
     private String hostAddress;
     private int port;
     private String protocol;
 
-    //Добавить на стороне сервера коллекцию для хранения деталей пользователя
-    public void listOfPhonesAndAmountsToPAy (ArrayList<String> pnoneAndAmount) {
-        HashMap<String, String> phoneAndHowMuch = new HashMap<>();
-        phoneAndHowMuch.put(pnoneAndAmount.get(0), pnoneAndAmount.get(1));
+    public boolean listOfPhonesAndAmountsToPay (Payment paymentDetails) {
+        //проверка хватит ли денег, если нет - вернет ошибку - ее ловит приложение и выводит на UI
+        BigDecimal currentAmountOfMoney = paymentDetails.getUser().getAccountBalance();
+        BigDecimal amountOfMoneyToPay = new BigDecimal(paymentDetails.getAmountToPay() );
+        AmountValidation amountValidation = new AmountValidation();
 
-        for (HashMap.Entry x : phoneAndHowMuch.entrySet()) {
-            System.out.println(x.getKey() + " " + x.getValue());
+        if (amountValidation.isPaymentPossible(currentAmountOfMoney, amountOfMoneyToPay)) {
+            //уменьшить сумму на счете
+            paymentDetails.getUser().setAccountBalance(currentAmountOfMoney.subtract(amountOfMoneyToPay));
+            //установить статус платежа
+            paymentDetails.setStatus("Платеж прошел");
+            //записать в базу данных
+            paymentDetails.getDatabase().putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());
+            //System.out.println(" пользователь " + paymentDetails.getUser().getName() + " заплатил на номер телефона " + paymentDetails.getPhoneNumber() + " сумму " + paymentDetails.getAmountToPay() + " валюта = " + paymentDetails.getCurrency());
+             return true;
+        } else {
+            return false;
         }
-
-        //return phonesAndAmountToPayNow;
     }
 }

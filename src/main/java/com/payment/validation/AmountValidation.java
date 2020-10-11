@@ -3,12 +3,7 @@ package com.payment.validation;
 import java.math.BigDecimal;
 
 public class AmountValidation {
-    private boolean isPaymantPossible = false;
-
-    public boolean isPaymantPossible(BigDecimal x, BigDecimal y) {
-        if (x.compareTo(y) >= 0) {
-            isPaymantPossible = true;
-        }
-        return isPaymantPossible;
+    public boolean isPaymentPossible(BigDecimal x, BigDecimal y) {
+        return x.compareTo(y) >= 0? true:false;
     }
 }
