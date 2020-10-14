@@ -7,8 +7,8 @@ import com.payment.server.Database;
 import com.payment.user.User;
 
 public class MobileApp implements Pay {
-        String currency="";
-        User user;
+        private int currency;
+        private User user;
 
         //оплатить: кто платит, кому(на какой номер), сколько, валюта
         @Override
@@ -19,10 +19,5 @@ public class MobileApp implements Pay {
                 paymentDetailes.setCurrency(currency);
                 paymentDetailes.setDatabase(database);
                 return paymentDetailes;
-        }
-
-        //если ответ от сервера положительный - выводим на ui оповещение
-        public void renewStatusOfPayment(Boolean b) {
-                System.out.println(b? "Платеж успешный" : "Платеж не прошел, на счете недостаточно средств");
         }
 }

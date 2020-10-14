@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+
 public class User {
     private String phoneNumber;
     private String name;

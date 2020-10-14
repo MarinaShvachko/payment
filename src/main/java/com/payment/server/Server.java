@@ -24,7 +24,6 @@ public class Server {
         if (amountValidation.isPaymentPossible(currentAmountOfMoney, amountOfMoneyToPay)) {
             //уменьшить сумму на счете
             paymentDetails.getUser().setAccountBalance(currentAmountOfMoney.subtract(amountOfMoneyToPay));
-            //установить статус платежа
             paymentDetails.setStatus("Платеж прошел");
             //записать в базу данных
             paymentDetails.getDatabase().putInDatabase(paymentDetails.hashCode(), paymentDetails.getPhoneNumber());

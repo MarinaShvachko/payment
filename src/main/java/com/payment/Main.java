@@ -43,7 +43,8 @@ public class Main {
         app.payUsingPhoneNumber(vasia, pnoneAndAmount, personBankAccount.getCurrency(), database);
 
         //сервер обрабатывает платеж и возвращает статус,
-        //в зависимости от статуса приложение выводит сообщение для пользователя
-        app.renewStatusOfPayment(server.listOfPhonesAndAmountsToPay(pnoneAndAmount));
+        server.listOfPhonesAndAmountsToPay(pnoneAndAmount);
+
+
     }
 }
