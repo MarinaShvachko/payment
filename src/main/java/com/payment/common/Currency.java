@@ -11,8 +11,6 @@ public enum Currency {
         this.currency = currency;
     }
 
-    Currency() {}
-
     public int getCurrency() {
         return currency;
     }

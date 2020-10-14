@@ -5,11 +5,9 @@ import com.payment.bankAccount.PersonBankAccount;
 import com.payment.common.Currency;
 import com.payment.common.ReceiveDataForPayment;
 import com.payment.payment.Payment;
-import com.payment.phones.HomePhone;
 import com.payment.server.Database;
 import com.payment.server.Server;
 import com.payment.user.User;
-import com.payment.validation.UserPhoneValidation;
 import java.math.BigDecimal;
 
 
@@ -17,13 +15,6 @@ public class Main {
     public static void main(String[] args) {
 
         PersonBankAccount personBankAccount = new PersonBankAccount(123456789, new BigDecimal(87L), Currency.RUB);
-
-        //только для домашнего задания, урок 14 - добавить в приложение иерархию типов номеров телефонов, добавила пакет phones
-        //сделать класс реализующий проверку по форматам номера телефонов дженериком - UserPhoneValidation
-        //передать в этот метод лямбду, 16 занятие
-        HomePhone homePhone = new HomePhone("4444444");
-        UserPhoneValidation<String> hp = new UserPhoneValidation<String>(homePhone.getHomePhone());
-        hp.validateUserPhoneNumber(homePhone, phone -> homePhone.getHomePhone().matches("\\d+"));
 
         User vasia = new User("89124445566", "Вася", "Пупкин", personBankAccount);
 
@@ -41,10 +32,10 @@ public class Main {
 
         //отправить обьект с информацией для оплаты на сервер
         app.payUsingPhoneNumber(vasia, pnoneAndAmount, personBankAccount.getCurrency(), database);
+        //результат использовать и вообще сделать это отдельным классом который передает сообщения от приложухи на сервер
 
         //сервер обрабатывает платеж и возвращает статус,
+        //в зависимости от статуса приложение выводит сообщение для пользователя
         server.listOfPhonesAndAmountsToPay(pnoneAndAmount);
-
-
     }
 }

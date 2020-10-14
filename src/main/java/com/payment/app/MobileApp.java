@@ -5,6 +5,9 @@ import com.payment.common.Pay;
 import com.payment.payment.Payment;
 import com.payment.server.Database;
 import com.payment.user.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 
 public class MobileApp implements Pay {
         private int currency;
@@ -21,3 +24,5 @@ public class MobileApp implements Pay {
                 return paymentDetailes;
         }
 }
+//собрать в методе все для формирования обьекта платежа
+//при таком дизайне лучше создавать объект Payment внутри метода и инициализировать
