@@ -6,7 +6,8 @@ import lombok.Getter;
 public class MobilePhone extends Phone{
     private String mobilePhone;
 
-    public  MobilePhone(String phone) {
+    @Override
+    public  void Phone(String phone) {
         if (phone.length() == 11) {
             mobilePhone = phone;
         } else {

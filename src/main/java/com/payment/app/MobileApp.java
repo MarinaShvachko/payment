@@ -12,7 +12,7 @@ public class MobileApp implements Pay {
 
         //оплатить: кто платит, кому(на какой номер), сколько, валюта
         @Override
-        public Payment payUsingPhoneNumber(User user, Payment paymentDetailes, Currency currency, Database database) {
+        public Payment payUsingPhoneNumber(User user, Payment paymentDetailes, Currency currency, Database database) { //этот метод в класс в коммон
                 this.currency = currency.getCurrency();
                 this.user = user;
                 paymentDetailes.setUser(user);
@@ -26,3 +26,5 @@ public class MobileApp implements Pay {
                 System.out.println(b? "Платеж успешный" : "Платеж не прошел, на счете недостаточно средств");
         }
 }
+
+//собрать в методе все для формирования обьекта платежа
