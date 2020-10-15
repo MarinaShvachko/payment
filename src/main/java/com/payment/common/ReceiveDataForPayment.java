@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public interface ReceiveDataForPayment {
 
-
     static Payment ReceivePhoneNumberAndMoneyFromConsole() {
         Scanner scaner = new Scanner(System.in);
         String phoneNumber = "";

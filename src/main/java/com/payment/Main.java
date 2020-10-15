@@ -8,8 +8,10 @@ import com.payment.payment.Payment;
 import com.payment.server.Database;
 import com.payment.server.Server;
 import com.payment.user.User;
-import java.math.BigDecimal;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +20,9 @@ public class Main {
 
         User vasia = new User("89124445566", "Вася", "Пупкин", personBankAccount);
 
-        MobileApp app = new MobileApp();
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(MobileApp.class);
+        MobileApp app = ctx.getBean(MobileApp.class);
+        //MobileApp app = new MobileApp();
 
         Server server = new Server("199.188.89.89", 8800, "TCP");
 

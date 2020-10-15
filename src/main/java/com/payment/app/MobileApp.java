@@ -8,7 +8,7 @@ import com.payment.user.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+@Configuration
 public class MobileApp implements Pay {
         private int currency;
         private User user;
@@ -23,6 +23,11 @@ public class MobileApp implements Pay {
                 paymentDetailes.setDatabase(database);
                 return paymentDetailes;
         }
+
+        public MobileApp mobileApp() {
+                return new MobileApp();
+        }
 }
+// TODO: 15.10.2020
 //собрать в методе все для формирования обьекта платежа
 //при таком дизайне лучше создавать объект Payment внутри метода и инициализировать
