@@ -2,32 +2,26 @@ package com.payment.app;
 
 import com.payment.common.Currency;
 import com.payment.common.Pay;
-import com.payment.payment.Payment;
+import com.payment.payment.PhoneAndAmountToPay;
+import com.payment.payment.PaymentInfo;
 import com.payment.server.Database;
 import com.payment.user.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MobileApp implements Pay {
-        private int currency;
-        private User user;
 
-        //оплатить: кто платит, кому(на какой номер), сколько, валюта
+        //собрать вместе всю информацию: кто платит, кому(на какой номер), сколько, валюта
         @Override
-        public Payment payUsingPhoneNumber(User user, Payment paymentDetailes, Currency currency, Database database) {
-                this.currency = currency.getCurrency();
-                this.user = user;
-                paymentDetailes.setUser(user);
-                paymentDetailes.setCurrency(currency);
-                paymentDetailes.setDatabase(database);
-                return paymentDetailes;
+        public PaymentInfo putTogetherPaymentInfoToSendToServer (User user, PhoneAndAmountToPay phoneAndAmountToPay, Currency currency, Database database) {
+                PaymentInfo usersAndPaymentDetails = new PaymentInfo(user, phoneAndAmountToPay, currency);
+                usersAndPaymentDetails.setDatabase(database);
+                usersAndPaymentDetails.setAmountToPay(phoneAndAmountToPay.getAmountToPay());
+                usersAndPaymentDetails.setPhoneNumber(phoneAndAmountToPay.getPhoneNumber());
+                return  usersAndPaymentDetails;
         }
 
         public MobileApp mobileApp() {
                 return new MobileApp();
         }
 }
-// TODO: 15.10.2020
-//собрать в методе все для формирования обьекта платежа
-//при таком дизайне лучше создавать объект Payment внутри метода и инициализировать

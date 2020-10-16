@@ -9,18 +9,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
+public class PhoneAndAmountToPay {
 
-public class Payment {
-    //от кого
     private User user;
-    //кому
     private String phoneNumber;
-    //сколько
     private String amountToPay;
-    //валюта
     private Currency currency;
-    //успешная оплата или ошибка
-    private String status;
 
-    private Database database;
 }

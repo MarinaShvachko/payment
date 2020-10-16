@@ -1,9 +1,10 @@
 package com.payment.common;
 
-import com.payment.payment.Payment;
+import com.payment.payment.PhoneAndAmountToPay;
+import com.payment.payment.PaymentInfo;
 import com.payment.server.Database;
 import com.payment.user.User;
 
 public interface Pay {
-    Payment payUsingPhoneNumber(User user, Payment p, Currency currency, Database database);
+    PaymentInfo putTogetherPaymentInfoToSendToServer (User user, PhoneAndAmountToPay phoneAndAmountToPay, Currency currency, Database database);
 }
