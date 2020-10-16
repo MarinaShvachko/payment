@@ -5,6 +5,7 @@ import com.payment.validation.AmountValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
@@ -31,7 +32,7 @@ public class Server {
             //System.out.println(" пользователь " + paymentDetails.getUser().getName() + " заплатил на номер телефона " + paymentDetails.getPhoneNumber() + " сумму " + paymentDetails.getAmountToPay() + " валюта = " + paymentDetails.getCurrency());
              return true;
         } else {
-            System.out.println("не прошел");
+            //System.out.println("не прошел");
             return false;
         }
     }

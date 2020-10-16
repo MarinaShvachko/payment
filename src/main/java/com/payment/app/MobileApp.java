@@ -21,6 +21,11 @@ public class MobileApp implements Pay {
                 return  usersAndPaymentDetails;
         }
 
+        public void checkOnDatabase(Database database, PhoneAndAmountToPay pnoneAndAmount) {
+                database.putInDatabase(1, "89123334455");
+                database.checkOnDatabase(database, pnoneAndAmount);
+        }
+
         public MobileApp mobileApp() {
                 return new MobileApp();
         }
