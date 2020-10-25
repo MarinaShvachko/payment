@@ -4,7 +4,7 @@ import com.payment.exception.PhoneValidationExeption;
 import com.payment.payment.PhoneAndAmountToPay;
 import com.payment.phones.HomePhone;
 import com.payment.phones.Phone;
-import com.payment.validation.UserPhoneValidation;
+import com.payment.validation.UserPhoneValidator;
 import java.util.Scanner;
 
 public interface ReceiveDataForPayment {
@@ -18,7 +18,7 @@ public interface ReceiveDataForPayment {
 
         phoneNumber = scaner.nextLine();
         Phone homePhone = new HomePhone(phoneNumber);
-        UserPhoneValidation<String> hp = new UserPhoneValidation<>(phoneAndAmountToPay.getPhoneNumber());
+        UserPhoneValidator<String> hp = new UserPhoneValidator<>(phoneAndAmountToPay.getPhoneNumber());
 
         if (!hp.validateUserPhoneNumber(homePhone, phone -> homePhone.getPhoneNumber().matches("\\d+") && homePhone.getPhoneNumber().length() == 11)) {
             throw new PhoneValidationExeption("Введенный номер не соответствует шаблону 89123334455");

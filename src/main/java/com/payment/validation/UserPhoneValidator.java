@@ -6,10 +6,10 @@ import lombok.Getter;
 import java.util.function.Predicate;
 
 @Getter
-public class UserPhoneValidation<T> {
+public class UserPhoneValidator<T> {
     private T phone;
 
-    public UserPhoneValidation(T phone) {
+    public UserPhoneValidator(T phone) {
         this.phone = phone;
     }
 

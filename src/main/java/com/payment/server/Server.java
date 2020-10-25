@@ -1,11 +1,10 @@
 package com.payment.server;
 
 import com.payment.payment.PaymentInfo;
-import com.payment.validation.AmountValidation;
+import com.payment.validation.AmountValidator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
@@ -22,7 +21,7 @@ public class Server {
         BigDecimal currentAmountOfMoney = paymentDetails.getUser().getAccountBalance();
 
         BigDecimal amountOfMoneyToPay = new BigDecimal(paymentDetails.getAmountToPay());
-        AmountValidation amountValidation = new AmountValidation();
+        AmountValidator amountValidation = new AmountValidator();
 
         if (amountValidation.isPaymentPossible(currentAmountOfMoney, amountOfMoneyToPay)) {
             //уменьшить сумму на счете

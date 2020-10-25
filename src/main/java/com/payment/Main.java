@@ -17,12 +17,14 @@ import java.math.BigDecimal;
 public class Main {
     public static void main(String[] args) {
 
-        PersonBankAccount personBankAccount = new PersonBankAccount(123456789, new BigDecimal(87L), Currency.RUB);
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.payment");
+
+        PersonBankAccount personBankAccount = context.getBean(PersonBankAccount.class);
+        personBankAccount.initializePersonBankAccount(123456789, new BigDecimal(87L), Currency.RUB);
 
         User vasia = new User("89124445566", "Вася", "Пупкин", personBankAccount);
 
-        ApplicationContext ctxApp = new AnnotationConfigApplicationContext(MobileApp.class);
-        MobileApp app = ctxApp.getBean(MobileApp.class);
+        MobileApp app = context.getBean(MobileApp.class);
 
         Server server = new Server("199.188.89.89", 8800, "TCP");
 
@@ -33,11 +35,10 @@ public class Main {
         Database<Integer, String> database = new Database<>();
         app.checkOnDatabase(database, pnoneAndAmount);
 
-        //обьект со всеми данными для платежа
+        //обогатить объект phoneAndAmount доп. данными для платежа и вернуть новый обьект
         PaymentInfo paymentInfo = app.putTogetherPaymentInfoToSendToServer(vasia, pnoneAndAmount, Currency.RUB, database);
 
-        //сервер обрабатывает платеж и возвращает статус,
-        //в зависимости от статуса приложение выводит сообщение для пользователя
+        //сервер обрабатывает платеж и возвращает статус
          server.listOfPhonesAndAmountsToPay(paymentInfo);
     }
 }
