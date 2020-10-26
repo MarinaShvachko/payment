@@ -4,12 +4,13 @@ package com.payment.user;
 import com.payment.bankAccount.PersonBankAccount;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-
 public class User {
     private String phoneNumber;
     private String name;

@@ -1,7 +1,9 @@
 package com.payment.server;
 
 import com.payment.exception.ServerValidationExeption;
-import com.payment.payment.Payment;
+import com.payment.payment.PaymentInfo;
+import com.payment.payment.PhoneAndAmountToPay;
+
 import java.util.*;
 
 public class Database<T1, T2> {
@@ -26,11 +28,11 @@ public class Database<T1, T2> {
      }
 
      //проверяю дубли по номеру телефона а не по хэшкоду только для теста
-    public void checkOnDatabase(Database d, Payment p) {
-        for (Object x : d.getDatabase().entrySet()) {
-            if (d.getDatabase().containsValue(p.getPhoneNumber())) {
-                throw new ServerValidationExeption("Дублирующий запрос!");
-            }
+     public void checkOnDatabase(Database d, PhoneAndAmountToPay p) {
+         for (Object x : d.getDatabase().entrySet()) {
+             if (d.getDatabase().containsValue(p.getPhoneNumber())) {
+                 throw new ServerValidationExeption("Дублирующий запрос!");
+             }
         }
     }
 }
