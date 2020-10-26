@@ -8,7 +8,7 @@ import com.payment.server.Database;
 import com.payment.user.User;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+
 public class MobileApp implements Pay {
 
         //собрать вместе всю информацию: кто платит, кому(на какой номер), сколько, валюта

@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import java.math.BigDecimal;
 
 @Getter
-@Configuration
 public class PersonBankAccount {
     private int bankAccountNumber;
     private BigDecimal accountBalance;
