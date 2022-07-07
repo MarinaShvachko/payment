@@ -1,1 +1,1 @@
-# Payment, the project from the Sber educational course
+# Payment, the project from the Sber educational course.
